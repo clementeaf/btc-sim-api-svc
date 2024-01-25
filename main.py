@@ -13,14 +13,13 @@ app = FastAPI(
 # CORS Configueration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3600"],
+    allow_origins=["*"], 
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"],  
+    allow_headers=["*"],  
 )
 
 # EndPoints 
-
 @app.get(
         '/markets', 
         summary="markets recent spread and brief compare with last one", 
