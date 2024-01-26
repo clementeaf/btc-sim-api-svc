@@ -18,7 +18,7 @@ app = FastAPI(
 # CORS Configueration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3600"], 
+    allow_origins=["*"], 
     allow_credentials=True,
     allow_methods=["*"],  
     allow_headers=["*"],  
@@ -53,7 +53,9 @@ async def get_market_spread():
     - dict: JSON response containing the history of spread entries.
     """
     try:
-        return fetch_market_data()
+        spread_entries = fetch_market_data()
+        response_data = {"history": spread_entries}
+        return response_data
     except HTTPException as e:
         return {"error": str(e)}
     
