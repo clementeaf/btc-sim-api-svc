@@ -2,6 +2,7 @@ from fastapi import FastAPI, Query
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import requests
+import uvicorn
 
 from app.utils.utils import fetch_market_data
 
@@ -56,3 +57,6 @@ async def get_price(timestamp: int = Query(..., description="Timestamp")):
     else:
         return {"timestamp": timestamp, "price": None}
     
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0, port=8000")
